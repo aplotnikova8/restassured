@@ -20,11 +20,23 @@ public class SpecificationTest {
     @Test
     public void checkSimpleGetRequest() {
         given()
-               //.spec(Specifications.baseRequestSpec())
+               .spec(Specifications.baseRequestSpec(EnvConstants.POSTMAN_URL))
                 .when()
                 .get("/get?foo1=bar1&foo2=bar2")
                 .then()
-                //.spec(Specifications.baseResponseSpecSuccess())
+                .spec(Specifications.baseResponseSpecSuccess())
+                .assertThat()
+                .and().body("args.foo2", Matchers.is("bar2"));
+    }
+
+    @Test
+    public void checkSimpleGetRequest1() {
+        given()
+                .spec(Specifications.baseRequestSpec(EnvConstants.POSTMAN_URL))
+                .when()
+                .get("/get?foo1=bar1&foo2=bar2")
+                .then()
+                .spec(Specifications.baseResponseSpecSuccess())
                 .assertThat()
                 .and().body("args.foo2", Matchers.is("bar2"));
     }

@@ -12,7 +12,8 @@ public class PetApi extends BasePetApi {
 
     public ValidatableResponse postPet(Pet pet) {
         return given()
-                .when().body(pet)
+                .when()
+                .body(pet)
                 .post(PET_URN)
                 .then();
     }
